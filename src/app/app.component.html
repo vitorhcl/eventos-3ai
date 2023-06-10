@@ -1,0 +1,11 @@
+<div *ngIf="this.EVENTOS.length > 0; else loading">
+  <app-main [EVENTOS]="EVENTOS"></app-main>
+</div>
+<ng-template #loading>
+  <div class="container d-flex justify-content-center mx-auto align-items-center " style="height: 100vh;">
+    <button class="btn btn-outline-primary btn-lg" type="button" disabled>
+      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+      Carregando...
+    </button>
+  </div>
+</ng-template>
