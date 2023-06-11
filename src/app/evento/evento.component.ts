@@ -46,6 +46,15 @@ export class EventoComponent {
   }
 }
 
+export function compararDataSemTempo(data1: Date, data2: Date, comparator: (d1: Date, d2: Date) => boolean) {
+  const data1SemTempo = data1;
+  const data2SemTempo = data2;
+
+  data1SemTempo.setHours(0, 0, 0, 0);
+  data2SemTempo.setHours(0, 0, 0, 0);
+  return comparator(data1SemTempo, data2SemTempo);
+}
+
 export class Evento {
   public Id!: number;
   public Nome!: string;
@@ -75,7 +84,7 @@ export class Evento {
   public get EntregaFormatada(): string {
     if(this.Entrega === undefined)
       return '?????';
-    if(this.Entrega === new Date())
+    if(compararDataSemTempo(this.Entrega, new Date(), (d1, d2) => d1.getTime() === d2.getTime()))
       return 'HOJE';
     const oneDay = 24 * 60 * 60 * 1000; // milliseconds in a day
     const firstDayOfYear = new Date(new Date().getFullYear(), 0, 1);
