@@ -5,16 +5,16 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { EventoComponent } from './evento/evento.component';
-import { LoadingModalComponent } from './loading-modal/loading-modal.component';
 import { MainComponent } from './main/main.component';
 import { HttpClientModule } from '@angular/common/http';
+import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EventoComponent,
-    LoadingModalComponent,
     MainComponent,
+    LoadingComponent,
   ],
   imports: [
     BrowserModule,
