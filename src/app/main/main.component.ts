@@ -18,8 +18,6 @@ export class MainComponent {
   }
 
   ngOnInit() {
-    console.log('Eventos main: ');
-    console.log(this.EVENTOS);
     this.eventosDisplay = this.EVENTOS;
     this.eventosDisplayOrdenar();
   }

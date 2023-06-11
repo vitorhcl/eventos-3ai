@@ -11,10 +11,6 @@ export class EventoComponent {
 
   eventoComponent = EventoComponent;
 
-  ngOnInit(){
-    console.log('Nome: ' + this.evento.Nome);
-  }
-
   @Output() filtroDataEvent = new EventEmitter<Date>();
   @Output() filtroMateriaEvent = new EventEmitter<MateriaEnum>();
   @Output() exibirDescricaoEvent = new EventEmitter<number>();

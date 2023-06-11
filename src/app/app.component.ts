@@ -16,8 +16,6 @@ export class AppComponent {
 
   async buscarEventos(): Promise<Array<Evento>> {
     this.EVENTOS = await this.apiService.get();
-    console.log('Eventos buscarEventos():');
-    console.log(this.EVENTOS);
     return this.EVENTOS;
   }
 
