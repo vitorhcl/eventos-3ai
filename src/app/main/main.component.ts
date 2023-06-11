@@ -24,6 +24,17 @@ export class MainComponent {
 
   eventosDisplayOrdenar() {
     this.eventosDisplay.sort((a, b) => a.Entrega === undefined ? -1 : (a.Entrega! < b.Entrega! ? -1 : 1));
+    this.eventosDisplay = this.eventosDisplay.filter(item => {
+      const hoje = new Date();
+      const entrega = item.EntregaNN;
+
+      // Set time to 0 for both dates
+      hoje.setHours(0, 0, 0, 0);
+      entrega.setHours(0, 0, 0, 0);
+      if (entrega >= hoje)
+        return true;
+      return false;
+    });
   }
 
   copiarTexto = (texto: string) => {

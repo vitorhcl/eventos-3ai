@@ -75,6 +75,8 @@ export class Evento {
   public get EntregaFormatada(): string {
     if(this.Entrega === undefined)
       return '?????';
+    if(this.Entrega === new Date())
+      return 'HOJE';
     const oneDay = 24 * 60 * 60 * 1000; // milliseconds in a day
     const firstDayOfYear = new Date(new Date().getFullYear(), 0, 1);
     const daysOffset = Math.round(((new Date().getTime() - firstDayOfYear.getTime()) / oneDay));
