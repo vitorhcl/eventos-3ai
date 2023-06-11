@@ -7,7 +7,7 @@ import { firstValueFrom } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiService {
-  private readonly apiUrl = 'http://vitorhcl.somee.com/SalaAPI/';
+  private readonly apiUrl = 'https://vitorhcl.somee.com/SalaAPI/';
 
   constructor(private http: HttpClient) { }
   eventos: Array<Evento> = new Array<Evento>();
