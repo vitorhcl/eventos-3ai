@@ -24,10 +24,7 @@ export class MainComponent {
 
   eventosDisplayOrdenar() {
     this.eventosDisplay.sort((a, b) => a.Entrega === undefined ? -1 : (a.Entrega! < b.Entrega! ? -1 : 1));
-    this.eventosDisplay = this.eventosDisplay.filter(evento => {
-      compararDataSemTempo(evento.EntregaNN, new Date(), (d1, d2) => d1.getTime() >= d2.getTime());
-    });
-  }
+    }
 
   copiarTexto = (texto: string) => {
     navigator.clipboard.writeText(texto);
