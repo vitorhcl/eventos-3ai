@@ -1,6 +1,9 @@
 import { formatDate } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { Evento, EventoComponent, MateriaEnum, TipoEvento, compararDataSemTempo } from '../evento/evento.component';
+import { EventoComponent } from '../evento/evento.component';
+import { Evento } from '../models/evento';
+import { TipoEvento } from '../models/enums/tipo-evento';
+import { MateriaEnum } from '../models/enums/materia-enum';
 
 @Component({
   selector: 'app-main',

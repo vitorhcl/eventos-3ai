@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { Evento, MateriaEnum, TipoEvento } from './evento/evento.component';
 import { ApiService } from './api.service';
+import { Evento } from './models/evento';
+import { MateriaEnum } from './models/enums/materia-enum';
+import { TipoEvento } from './models/enums/tipo-evento';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +13,8 @@ export class AppComponent {
   EVENTOS: Array<Evento> = [];
 
   constructor(private apiService: ApiService) { 
-    this.buscarEventos();
+    //this.buscarEventos();
+    this.inserir();
   }
 
   async buscarEventos(): Promise<Array<Evento>> {

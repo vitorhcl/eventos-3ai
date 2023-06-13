@@ -1,0 +1,16 @@
+export enum MateriaEnum {
+    OUTRA = 1,
+    BIO = 2,
+    FILO = 3,
+    GEO = 4,
+    ING = 5,
+    IPSSI = 6,
+    LPL = 7,
+    MAT = 8,
+    PAM = 9,
+    PW = 10,
+    QTS = 11,
+    SEBI = 12,
+    SOC = 13,
+    TCC = 14,
+}
