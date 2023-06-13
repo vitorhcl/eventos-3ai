@@ -8,6 +8,8 @@ export class DateHelper {
       
         data1SemTempo.setHours(0, 0, 0, 0);
         data2SemTempo.setHours(0, 0, 0, 0);
+        console.log("Data 1: " + data1SemTempo);
+        console.log("Data 2: " + data2SemTempo);
         return comparator(data1SemTempo, data2SemTempo);
       }
 }

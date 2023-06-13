@@ -13,8 +13,8 @@ export class AppComponent {
   EVENTOS: Array<Evento> = [];
 
   constructor(private apiService: ApiService) { 
-    //this.buscarEventos();
-    this.inserir();
+    this.buscarEventos();
+    //this.inserir();
   }
 
   async buscarEventos(): Promise<Array<Evento>> {
@@ -38,7 +38,16 @@ export class AppComponent {
     evento1.Entrega = new Date();
     evento1.Entrega.setDate(new Date().getDate() + 2);
     evento1.Tipo = TipoEvento.Atividade;
+
+    let evento2: Evento = new Evento();
+    evento2.Id = 31;
+    evento2.Nome = "Plano de testes";
+    evento2.Materia = MateriaEnum.QTS;
+    evento2.Entrega = new Date();
+    evento2.Entrega.setDate(new Date().getDate() + 2);
+    evento2.Tipo = TipoEvento.Atividade;
     this.EVENTOS.push(evento);
     this.EVENTOS.push(evento1);
+    this.EVENTOS.push(evento2);
   }
 }
