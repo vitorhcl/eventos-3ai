@@ -1,3 +1,3 @@
 export const environment = {
-    apiUrl: 'https://vitorhcl.somee.com/SalaAPI/'
+    apiUrl: 'https://localhost:4200/'
 };
