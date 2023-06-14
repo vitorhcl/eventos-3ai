@@ -22,7 +22,12 @@
       (filtroTipoEvent)="filtrarPorTipo($event)"
       [evento]="evento"></app-evento>
     </div>
-    <div *ngIf="descricaoAtividadeAtual != null" class="d-flex justify-content-center p-2">
-      {{descricaoAtividadeAtual}}
+    <div *ngIf="filtroDescricaoAtivo()" class="d-flex justify-content-center p-2">
+      <span *ngIf="descricaoAtividadeAtual != null; else semDescricao" class="d-flex justify-content-center p-2">
+        {{descricaoAtividadeAtual}}
+      </span>
+      <ng-template #semDescricao><div style="color: #cf0000">
+        Sem descrição
+      </div></ng-template>
     </div>
 </div>

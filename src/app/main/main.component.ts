@@ -49,6 +49,10 @@ export class MainComponent {
     this.copiarTexto(texto);
   }
 
+  filtroDescricaoAtivo() {
+    return this.filtros.find(filtro => filtro.nome.startsWith('Ocultar')) != undefined;
+  }
+
   removerFiltros() {
     this.filtroStr = null;
     this.eventosDisplayOrdenar();
@@ -60,15 +64,15 @@ export class MainComponent {
     let evento: Evento | undefined = this.EVENTOS.find(e => e.Id == id);
     if(evento !== undefined) {
       if(evento?.Descricao == null)
-        this.descricaoAtividadeAtual = "Sem descrição";
+        this.descricaoAtividadeAtual = null;
       else
         this.descricaoAtividadeAtual = evento?.Descricao;
+        console.log(this.descricaoAtividadeAtual);
         var metodoFiltro = ((e: Evento) => e.Id === id);
         var filtro = new Filtro(this.EVENTOS, `Ocultar descrição (${evento.Base36ID})`, metodoFiltro);
-        if(this.filtros.find(f => f === filtro) == undefined)
+        if(this.filtros.find(f => f.nome.startsWith('Ocultar descrição')) == undefined)
           this.filtros.push(filtro);
         this.eventosDisplayOrdenar();
-        this.descricaoAtividadeAtual = null;
     }
   }
 

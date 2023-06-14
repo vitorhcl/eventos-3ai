@@ -27,7 +27,7 @@ export class Evento {
     }
   
     public get Base36ID(): string {
-      return Evento.ToBase36(this.Id).toUpperCase().padStart(2, '0');
+      return this.ToBase36(this.Id).toUpperCase().padStart(2, '0');
     }
   
     public get EntregaFormatada(): string {
@@ -51,7 +51,7 @@ export class Evento {
         return this.Entrega === undefined ? DateHelper.getMaxDate() : new Date(this.Entrega.getTime());
     }
 
-    public static ToBase36 = (num: number): string => {
+    public ToBase36 = (num: number): string => {
         return num.toString(36);
     }
 
