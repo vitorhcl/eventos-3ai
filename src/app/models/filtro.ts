@@ -1,5 +1,4 @@
 import { Evento } from "./evento";
-import { IFilter } from "./ifiltro";
 
 export class Filtro {
     constructor(eventos: Array<Evento>, nome: string, metodo: (e: Evento) => boolean) {
