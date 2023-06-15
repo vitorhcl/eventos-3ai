@@ -1,4 +1,4 @@
-<div class="container d-flex flex-row">
+<button class="btn btn-dark-outline container d-flex flex-row p-0">
   <div class="card border-secondary d-flex flex-row justify-content-center p-2">
     <button type="button" (click)="exibirDescricao(this.evento.Id)" class="btn btn-prop btn-primary">{{this.evento.Base36ID}}</button>
     <button type="button" (click)="filtrarPorData(this.evento.Entrega)" class="btn btn-prop btn-secondary">{{this.evento.EntregaFormatada}}</button>
@@ -12,4 +12,4 @@
       </svg>
     </button>
   </div>
-</div>
+</button>
