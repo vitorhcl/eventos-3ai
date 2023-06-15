@@ -6,6 +6,7 @@ import { TipoEvento } from '../models/enums/tipo-evento';
 import { MateriaEnum } from '../models/enums/materia-enum';
 import { Filtro } from '../models/filtro';
 import { DateHelper } from '../utils/date-helper';
+import { TipoFiltro } from '../models/enums/tipo-filtro';
 
 @Component({
   selector: 'app-main',
@@ -25,12 +26,12 @@ export class MainComponent {
 
   ngOnInit() {
     this.eventosDisplay = this.EVENTOS;
+    this.eventosDisplay.sort((a, b) => a.Entrega === undefined ? -1 : (a.Entrega! < b.Entrega! ? -1 : 1));
     this.eventosDisplayOrdenar();
   }
 
   eventosDisplayOrdenar() {
     this.eventosDisplay = this.EVENTOS;
-    this.eventosDisplay.sort((a, b) => a.Entrega === undefined ? -1 : (a.Entrega! < b.Entrega! ? -1 : 1));
     this.filtros.forEach((filtro: Filtro) => {
       this.filtroStr = filtro.nome;
       this.eventosDisplay = this.eventosDisplay.filter(filtro.expressao);
@@ -50,12 +51,13 @@ export class MainComponent {
   }
 
   filtroDescricaoAtivo() {
-    return this.filtros.find(filtro => filtro.nome.startsWith('Ocultar')) != undefined;
+    return this.filtros.find(filtro => filtro.tipo == TipoFiltro.SINGLE) != undefined;
   }
 
   removerFiltros() {
     this.filtroStr = null;
     this.eventosDisplayOrdenar();
+    this.filtros = [];
     this.descricaoAtividadeAtual = null;
   }
 
@@ -69,7 +71,7 @@ export class MainComponent {
         this.descricaoAtividadeAtual = evento?.Descricao;
         console.log(this.descricaoAtividadeAtual);
         var metodoFiltro = ((e: Evento) => e.Id === id);
-        var filtro = new Filtro(this.EVENTOS, `Ocultar descrição (${evento.Base36ID})`, metodoFiltro);
+        var filtro = new Filtro(TipoFiltro.SINGLE, this.EVENTOS, `Ocultar descrição (${evento.Base36ID})`, metodoFiltro);
         if(this.filtros.find(f => f.nome.startsWith('Ocultar descrição')) == undefined)
           this.filtros.push(filtro);
         this.eventosDisplayOrdenar();
@@ -77,8 +79,12 @@ export class MainComponent {
   }
 
   filtrarPorData(data: Date) {
+    if(this.filtros.find(f => f.tipo == TipoFiltro.SINGLE) != undefined)
+      this.filtros = [];
+    if(this.filtros.find(f => f.tipo == TipoFiltro.DATA))
+      return;
     var metodoFiltro = ((e: Evento) => DateHelper.compararDataSemTempo(e.EntregaNN, data, (d1: Date, d2: Date) => d1.getTime() === d2.getTime()));
-    var filtro = new Filtro(this.EVENTOS, `Remover filtro (${formatDate(data, 'dd/MM', "en_US")})`, metodoFiltro);
+    var filtro = new Filtro(TipoFiltro.DATA, this.EVENTOS, `Remover filtro (${formatDate(data, 'dd/MM', "en_US")})`, metodoFiltro);
     if(this.filtros.find(f => f === filtro) == undefined)
       this.filtros.push(filtro);
     this.eventosDisplayOrdenar();
@@ -86,8 +92,12 @@ export class MainComponent {
   }
 
   filtrarPorMateria(materia: MateriaEnum) {
+    if(this.filtros.find(f => f.tipo == TipoFiltro.SINGLE) != undefined)
+      this.filtros = [];
+    if(this.filtros.find(f => f.tipo == TipoFiltro.MATERIA))
+      return;
     var metodoFiltro = ((e: Evento) => e.Materia == materia);
-    var filtro = new Filtro(this.EVENTOS, `Remover filtro (${EventoComponent.getNomeMateria(materia)})`, metodoFiltro);
+    var filtro = new Filtro(TipoFiltro.MATERIA, this.EVENTOS, `Remover filtro (${EventoComponent.getNomeMateria(materia)})`, metodoFiltro);
     if(this.filtros.find(f => f === filtro) == undefined)
       this.filtros.push(filtro);
     this.eventosDisplayOrdenar();
@@ -95,8 +105,12 @@ export class MainComponent {
   }
 
   filtrarPorTipo(tipo: TipoEvento) {
+    if(this.filtros.find(f => f.tipo == TipoFiltro.SINGLE) != undefined)
+      this.filtros = [];
+    if(this.filtros.find(f => f.tipo == TipoFiltro.TIPO_EVENTO))
+      return;
     var metodoFiltro = ((e: Evento) => e.Tipo == tipo);
-    var filtro = new Filtro(this.EVENTOS, `Remover filtro (${EventoComponent.getNomeTipo(tipo)})`, metodoFiltro);
+    var filtro = new Filtro(TipoFiltro.TIPO_EVENTO, this.EVENTOS, `Remover filtro (${EventoComponent.getNomeTipo(tipo)})`, metodoFiltro);
     if(this.filtros.find(f => f === filtro) == undefined)
       this.filtros.push(filtro);
     this.eventosDisplayOrdenar();
