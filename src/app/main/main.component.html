@@ -23,8 +23,7 @@
       [evento]="evento"></app-evento>
     </div>
     <div *ngIf="filtroDescricaoAtivo()" class="d-flex justify-content-center p-2">
-      <span *ngIf="descricaoAtividadeAtual != null; else semDescricao" class="d-flex justify-content-center p-2">
-        {{descricaoAtividadeAtual}}
+      <span *ngIf="descricaoAtividadeAtual != null; else semDescricao" style="white-space: pre-line" class="d-flex justify-content-center p-2" [innerHtml]="descricaoAtividadeAtual">
       </span>
       <ng-template #semDescricao><div style="color: #cf0000">
         Sem descrição
